@@ -1,0 +1,21 @@
+ComfyUI-H3-ExactMasterMemory v0.5.0 - Workflow 01 v2 support
+
+ADDITIVE release. Every v0.4.3 node keeps its inputs, outputs 1-4 and behaviour.
+
+Changed (compatibility only)
+- semantic_ref.py / nodes.py no longer import torchaudio when the pack loads. Current
+  ComfyUI builds do not ship torchaudio, which made the whole pack fail to import.
+  Resampling tries torchaudio first (identical to v0.4.x), then comfy.audio.resample.
+- H3SemanticReferenceToVideo: new OPTIONAL input prompt_prefix (LoRA trigger words) and a
+  new 5th output hq_ref_pack (the source pictures, used only by the HQ pass).
+
+New nodes (v2_nodes.py)
+- H3RDLoraStack            six named optional LoRAs + two free slots, all OFF by default
+- H3RDSpeedMode            OFF / Turbo 8-step / Turbo 4-step: LoRA + steps + sampler
+- H3RDCacheRoute           FirstBlockCache only when Speed Mode is OFF
+- H3RDHQGate               one switch for the HQ pass; OFF skips the branch silently
+- H3RDHQPass2Latent        upscaled video + untouched audio, audio locked by noise mask
+- H3RDHQPass2Conditioning  picture references rebuilt at the HQ canvas, motion video dropped
+
+Not changed
+- timeline.py, keyframes_stable.py, ui_utils.py are byte-identical to v0.4.3.

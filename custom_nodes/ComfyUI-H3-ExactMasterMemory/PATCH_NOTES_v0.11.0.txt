@@ -1,0 +1,37 @@
+ComfyUI-H3-ExactMasterMemory v0.11.0 (Reference Director 01 v2.1)
+
+H3RDLoraStack
+- New field "lora_apply_mode" (last field, so workflows saved with older versions keep every value):
+    runtime (default)  every LoRA is applied while the model runs (the method of ComfyUI's core
+                       "Load LoRA (Bypass)" node).
+    merged             the v0.10.1 behaviour: the LoRA is folded into the model weights.
+  It is an optional input, so API-format prompts saved with v0.10.1 (which lack it) still validate.
+- All runtime LoRAs of one stack share one injection, undone in reverse order, so several LoRAs run
+  together. Each stack in a model chain gets its own injection (#1, #2, ...), and its hooks splice
+  themselves out when another bypass hook sits on top of them. The stack therefore also works next
+  to a core "Load LoRA (Bypass)" node or a second runtime stack, in any order, and the shared model
+  is left clean after every run.
+- Two core "Load LoRA (Bypass)" nodes in one chain still overwrite each other: that is ComfyUI core
+  behaviour. Load several LoRAs in this stack instead.
+- If the ComfyUI core is too old for runtime LoRAs, the stack merges them and says so in its report.
+- The report starts with the mode and lists, per LoRA, how many layers run at runtime. It also notes
+  when the incoming model already carries runtime LoRAs from an earlier node.
+- Workflows saved before v0.11.0 open with lora_apply_mode = runtime. Choose "merged" to get the
+  v2.0 result back exactly.
+
+H3RDSpeedSigmas (new)
+- Picks the main sampler's schedule from Speed Mode: OFF gets the full-quality schedule; the TURBO
+  modes get the plain schedule their LoRAs were made for, exactly as in v2.0.
+  Inputs: realism_sigmas, turbo_sigmas, speed_off (Speed Mode's use_cache).
+
+H3RDVedaSettings (new)
+- Settings for the third-party node "Veda Sparse Attention (MiniMax H3)"
+  (github.com/veda-sparse/Veda-on-ComfyUI). Input: the main sampler's sigmas. Outputs:
+  full_attention_steps (the late steps, where fine skin detail forms) and reference_sparsity
+  ("0%" = references at full attention). Connect both to the Veda node.
+- The step list follows the real schedule, so it stays right when Speed Mode or the step count
+  changes. The node never imports Veda and does nothing when the Veda node is bypassed.
+
+Installers
+- __init__.py names v0.10.1 in COMPATIBLE_WITH, so installers of earlier distributions that look
+  for "0.10.1" keep this version instead of swapping it back.

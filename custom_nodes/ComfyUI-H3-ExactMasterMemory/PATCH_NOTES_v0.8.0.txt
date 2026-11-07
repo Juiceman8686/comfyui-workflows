@@ -1,0 +1,10 @@
+ComfyUI-H3-ExactMasterMemory v0.8.0 - LMS sharpen group
+
+New node
+- H3RDLmsGate   one switch for the LMS sharpen group. Picks the source video (normal or motion-refined),
+                passes the model and text encoder into the group only when ON, and reports the source's
+                width, height and frame count so the new video is created at the same size and length.
+
+Changed
+- H3RDHQGate    (upscale switch) third source: "LMS-sharpened video".
+- H3RDFaceGate  fourth source: "LMS-sharpened video".

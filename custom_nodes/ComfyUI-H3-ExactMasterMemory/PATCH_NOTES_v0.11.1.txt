@@ -1,0 +1,11 @@
+ComfyUI-H3-ExactMasterMemory v0.11.1 (Reference Director 01 v2.1)
+
+H3RDHQGate, H3RDMotionGate, H3RDFaceGate
+- New optional VIDEO input "run_after". Connect the normal video (CREATE FINAL VIDEO) to it: the
+  group then starts only after the normal video is created, and ComfyUI saves and previews the
+  normal video first, so you can review it while the upscale, motion or face pass runs.
+  Without it, ComfyUI may run an optional group before saving the normal video.
+- Nothing else changes; workflows without the link behave as before.
+
+Installers
+- COMPATIBLE_WITH also names 0.11.0.

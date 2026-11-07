@@ -1,0 +1,24 @@
+ComfyUI-H3-ExactMasterMemory v0.11.3 (Reference Director 01 v2.1.3)
+
+H3RDKeepSourceColors (new)  "H3 Keep Source Colors - Upscale Colour Lock (v2)"
+- Gives an upscaled / refined video the colours of the normal video and keeps the upscale's detail.
+  Inputs: images (the upscaled frames), source_images (the normal video's frames, any size: they are
+  resized to the upscaled size), chroma_from_source (1.0 = every colour from the normal video; 0 =
+  off), max_kept_shift (0 = strict; 4-6 keeps the refine's small colour nuances, measured at about
+  2/255 on skin, and removes only larger changes; a faint trace of a strong recolouring can
+  remain), brightness_from_source (0 = off; 0.3-0.5 also pulls the coarse brightness toward the normal
+  video while fine detail stays), coarse_px, frames_per_batch.
+- Why: the HQ refine starts at 75 % noise (shift 12, denoise 0.20). It keeps the shapes of the
+  upscaled latent but re-decides the colour of thin bright details: on a rainy car scene the wet
+  hair strands beside the face came out teal-green in the upscaled video while the normal video had
+  them black. Frame statistics show no global colour shift and no tiling seams; the green follows
+  single strands. Colours are not what an upscale is for, so the finished upscaled frames now take
+  their chroma from the normal video (BT.709 luma / chroma split) and keep only the upscale's
+  brightness detail. Nothing in the sampling changes.
+- Frame counts must match: connect the source before the exact-duration trim (BACKEND - VIDEO
+  DECODE), as workflow v2.1.3 does. A single source frame is broadcast. Frames are processed in
+  small batches on the device of the input.
+- The report line names the frame count, the percentages and whether the source was resized.
+
+Installers
+- COMPATIBLE_WITH also names 0.11.2, so the v2.1.1 / v2.1.2 installers keep v0.11.3 in place.

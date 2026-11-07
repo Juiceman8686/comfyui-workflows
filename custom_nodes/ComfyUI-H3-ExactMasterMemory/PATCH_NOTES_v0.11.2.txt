@@ -1,0 +1,41 @@
+ComfyUI-H3-ExactMasterMemory v0.11.2 (Reference Director 01 v2.1.1)
+
+H3RDLoraStack
+- New optional field "look_loras_below_noise" (last field; default 1.0 = the v2.1 behaviour, so
+  workflows and API prompts saved with v0.11.1 keep every value and validate). Lowest value 0.15,
+  at which only the final step (which produces noise 0) carries the look LoRAs.
+- Below 1.0, the look LoRAs (Realism People, LMS Sharpness, custom 1, custom 2) run only on the
+  sampling steps that PRODUCE a noise level below this value. A step is judged by the noise it
+  produces (the next entry of the sampler's schedule): it is OFF when that noise is at or above the
+  value, fades in over 0.10 of noise, and runs at full strength from (value - 0.10) down. The early
+  steps, which decide framing, body structure and motion, run the plain model. Motion Continuity
+  Repair and Spatial Physics are never windowed.
+- Why: with H3's flow shift of 12, the v2.1 realism schedule (beta 20 + ExtendIntermediateSigmas
+  below 0.7 = 24 steps) spends its first 14 steps entirely above noise 0.75. In v2.1 the Realism
+  People LoRA ran on all of them too; close-ups were fine, but on medium and full-body shots its
+  portrait bias drifted the framing, the body and the motion. Shapes and skin form in the late
+  steps; the window keeps the LoRA there. 0.75 is the skin band of H3 Veda Settings.
+- What 0.75 does on the shipped schedules (shift 12):
+    Speed Mode OFF, 24 steps:  off on steps 1-14, fading in on step 15, full on steps 16-24.
+    TURBO 8-step (simple):     off on steps 1-6, full on the last 2.
+    TURBO 4-step (simple):     off on steps 1-3, full on the last step (which goes straight to 0).
+  So in the TURBO modes the look LoRAs act only on the last step or two. Set 1.0 for turbo drafts
+  if you want the v2.1 turbo look.
+- The refine passes do not start low with shift 12: the upscale refine (simple, 8 steps at denoise
+  0.20) starts at noise 0.75 and the face refine (8 steps at 0.40) at 0.89. The REFINE stack of
+  workflow v2.1.1 therefore ships with 1.0 (window off). A window there would remove the look
+  LoRAs from the first face-refine steps.
+- Runtime mode only (the LoRA strength is changed per step through the bypass hooks). In merged
+  mode the field is ignored and the report says so. Needs a ComfyUI core with APPLY_MODEL wrappers
+  (any core new enough for runtime LoRAs has them); otherwise the report says the window is off.
+  A LoRA's non-adapter patches (bias / weight diffs), if any, are merged at full strength and are
+  not windowed; the report marks them.
+- The report names the window and marks every LoRA that runs inside it. When the render starts,
+  the console prints how many steps of the real schedule carry the look LoRAs, for example:
+  "[H3RDLoraStack] look window 0.75: 24 steps; the look LoRAs run on the last 9 (+1 fading in)
+  and are off on the first 14."
+- The noise level is the sampler's sigma (1 = pure noise, 0 = finished), the same scale as
+  skin_band_below_noise on H3 Veda Settings.
+
+Installers
+- COMPATIBLE_WITH also names 0.11.1, so the v2.1 installer keeps v0.11.2 in place.

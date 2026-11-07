@@ -1,0 +1,13 @@
+ComfyUI-H3-ExactMasterMemory v0.6.0 - Workflow 01 v2: ControlNet on Video 1 + face refine
+
+ADDITIVE release on top of v0.5.0. No existing node changes behaviour.
+
+New nodes (v2_nodes.py)
+- H3RDVideo1Route     Video 1 is a soft reference (v1 behaviour) until the ControlNet group is
+                      switched on; then the ControlNet model is used and Video 1 stops being a reference.
+- H3RDFaceGate        one switch for the face-refine branch and the choice of source frames.
+- H3RDFaceAudioLock   reuses the pass-1 audio latent for the face crop and locks it. Replaces the
+                      third-party MiniMaxH3NativeAudioLock node, so no extra pack is needed for it.
+
+The ControlNet and pose-extraction nodes themselves are ComfyUI core nodes (0.35.0 or later).
+The face tracking / stitching nodes come from ComfyUI-H3-FaceRefine.

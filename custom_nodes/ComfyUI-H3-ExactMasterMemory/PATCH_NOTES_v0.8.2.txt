@@ -1,0 +1,15 @@
+ComfyUI-H3-ExactMasterMemory v0.8.2 - one steps field for every Speed Mode
+
+H3RDSpeedMode
+- One "steps" field replaces "final_steps" and "turbo_steps".
+- Changing the mode fills in that mode's own count: 20 (OFF), 8 (TURBO 8-step), 4 (TURBO 4-step).
+- Any number typed by hand is used with the selected mode, e.g. 8 steps with the 4-step LoRA,
+  16 steps with the 8-step LoRA, 25 steps with Speed Mode OFF.
+- steps = 0 means "use the mode's own count". The node does this itself, so the result is correct
+  even if the browser script below is not loaded.
+- The first mode is now labelled "OFF - full quality".
+
+New: web/h3rd_speed_mode.js - the browser script that shows and refills the number.
+The pack now sets WEB_DIRECTORY, which also makes the node help pages in web/docs available.
+
+Workflows saved with v0.8.1 or older: the old first-mode label is no longer in the list; pick the mode again.

@@ -1,0 +1,4 @@
+ComfyUI-H3-ExactMasterMemory v0.10.1
+
+H3RDHQGate (upscale switch): the "upscaler_model" field and the "model_name" output added in v0.10.0 are
+removed again. The upscaler model is chosen on the upscaler node itself, as before.

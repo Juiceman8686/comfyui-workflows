@@ -1,0 +1,15 @@
+ComfyUI-H3-ExactMasterMemory v0.10.0 - final touches
+
+H3RDLoraStack
+- Removed: Facial Realism CloseUp and Cinematic Realism. Four named LoRAs remain (Realism People,
+  Motion Continuity Repair, Spatial Physics, LMS Sharpness) plus the two custom slots.
+
+H3RDHQGate (upscale switch)
+- New field "upscaler_model" (default: auto-detect) and new output "model_name". The switch finds the
+  latent upscaler file under its current or its older official name and hands it to the upscaler node,
+  so the workflow no longer depends on which of the two names is on disk.
+
+H3RDLoadVideo
+- New browser script web/h3rd_load_video.js for the preview ComfyUI shows on the node: it loops without
+  sound, plays sound while the mouse is over it, and plays only the frames that will be loaded
+  (skip_first_frames, skip_last_frames, frame_load_cap). The node works without the script.

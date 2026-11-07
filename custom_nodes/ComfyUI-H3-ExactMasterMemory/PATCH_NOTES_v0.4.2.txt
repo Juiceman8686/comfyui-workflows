@@ -1,0 +1,8 @@
+ComfyUI-H3-ExactMasterMemory v0.4.2 — Workflow 01 Video 3 audio patch
+
+Surgical changes only:
+- Audio 3 standalone slot is replaced by source_video_audio on H3SemanticReferenceToVideo.
+- Video 3 soundtrack is paired with Video 3 using ComfyUI core H3 video_audio conditioning when Audio 1/2 are inactive.
+- Audio 1 or Audio 2 overrides/suppresses Video 3 soundtrack conditioning.
+- New H3SourceEditAudioPriority node preserves the original Video 3 AUDIO object for final output when Audio 1/2 are inactive; otherwise it passes H3 native/generated audio.
+- No other node implementation files were changed.

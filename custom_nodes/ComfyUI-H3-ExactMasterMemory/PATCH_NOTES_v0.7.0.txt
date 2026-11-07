@@ -1,0 +1,25 @@
+ComfyUI-H3-ExactMasterMemory v0.7.0 - Workflow 01 v2 final-round changes
+
+LoRA Stack (H3RDLoraStack)
+- Every named LoRA has a "<name>_file" picker: "auto-detect" (default) or any file in models/loras.
+  Use it when a file on disk has a different name than the one auto-detect looks for.
+- Slot 6 is now "lms_sharpness" (minimax_h3_lms_v1.0_r64.safetensors). It replaces Better Human Motion.
+  Note: that LoRA was trained as a guide-based second pass; in a plain stack it runs without its guide.
+
+Speed Mode
+- The 4-step option is labelled "TURBO 4-step - Ref2V v0.1 LoRA" (the word "draft" was removed).
+
+Latent upscale (was "HQ pass")
+- H3RDHQGate: the switch is "enable_upscale"; new "source" (normal video / motion-refined video).
+- Display names and messages say "upscale" instead of "HQ". Node ids are unchanged.
+
+Face refine
+- H3RDFaceGate: three sources - normal video, upscaled video, motion-refined video.
+
+New nodes
+- H3RDMotionGate     one switch for the motion refine (De-RoPE) group.
+- H3RDCompareVideo   builds one side-by-side (or top/bottom) video from two clips, encoded frame by frame.
+
+Retired
+- H3RDVideo1Route is no longer used by the workflow (the ControlNet group was removed). The class stays
+  registered so workflows saved from the previous build still open.

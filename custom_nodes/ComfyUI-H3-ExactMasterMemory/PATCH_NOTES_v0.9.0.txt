@@ -1,0 +1,16 @@
+ComfyUI-H3-ExactMasterMemory v0.9.0 - own video loader, final clean-up
+
+New node
+- H3RDLoadVideo   Video loader for the reference bank, built only from standard ComfyUI fields, so it draws
+                  correctly in the classic and in the new node renderer. Fields: video (with upload button),
+                  force_rate, custom_width, custom_height, frame_load_cap, skip_first_frames,
+                  skip_last_frames, select_every_nth. Outputs: IMAGE, frame_count, audio, info.
+                  Frame selection follows VideoHelperSuite's rule exactly, so Workflow 01 v1 results are kept.
+                  A clip without sound gives no audio. VideoHelperSuite is no longer needed by the workflow.
+
+Changed
+- H3RDHQGate (upscale switch): sources are "normal video" and "motion-refined video".
+- H3RDFaceGate: sources are "normal video", "upscaled video" and "motion-refined video".
+
+Retired (the workflow no longer uses them; the classes stay registered so older saved workflows still open)
+- H3RDLmsGate, H3RDLmsLora, H3RDCompareVideo.

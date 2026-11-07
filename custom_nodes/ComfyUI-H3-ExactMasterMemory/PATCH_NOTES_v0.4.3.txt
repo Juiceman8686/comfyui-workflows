@@ -1,0 +1,10 @@
+ComfyUI-H3-ExactMasterMemory v0.4.3
+
+Surgical compatibility fix for Workflow 01 Video 3 source-audio passthrough.
+
+- Fixes H3TrimAVToFrames crash: LazyAudioMap object does not support item assignment.
+- H3TrimAVToFrames no longer deep-copies or mutates incoming AUDIO mappings.
+- It now reads waveform/sample_rate and returns a fresh standard ComfyUI AUDIO dict.
+- No resampling, remixing, normalization, regeneration, or other audio processing added.
+- Video 3 paired soundtrack conditioning and Audio 1/2 priority behavior are unchanged from v0.4.2.
+- All unrelated runtime files are unchanged.

@@ -1,0 +1,15 @@
+ComfyUI-H3-ExactMasterMemory v0.6.1 - LoRA file names
+
+Fix: H3 LoRA Stack could not find three of its six LoRAs, because their real file names do
+not contain the words it searched for:
+- Cinematic Realism        Minimax H3 + Chinese title + V0.1.safetensors
+                           (the installer now saves it as minimax_h3_cinematic_realism_v0.1.safetensors)
+- Motion Continuity Repair Motion_Repair_V2.safetensors / Motion_Repair.safetensors
+- Better Human Motion      better_motion_h3_lora_v1_500.safetensors
+Each slot now lists the real file names, newest version first.
+
+Defaults corrected to the authors' recommendations:
+- Cinematic Realism  strength 0.8 -> 0.7 (author: 0.5 for high-motion clips), trigger word "DY"
+- Spatial Physics    strength 0.8 -> 0.4 (author: 0.3-0.5; newest file clean_3000_pruned)
+
+The missing-file error now names the exact file and its download page.

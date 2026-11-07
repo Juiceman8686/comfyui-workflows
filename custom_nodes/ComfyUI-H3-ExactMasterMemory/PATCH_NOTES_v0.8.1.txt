@@ -1,0 +1,7 @@
+ComfyUI-H3-ExactMasterMemory v0.8.1 - turbo step count
+
+H3RDSpeedMode: new setting "turbo_steps" (last widget).
+  0 (default) = automatic: 8 steps with the 8-step LoRA, 4 with the 4-step LoRA. Same as before.
+  Any other number is used as the step count in the turbo modes, e.g. 8 steps with the 4-step LoRA.
+"final_steps" is unchanged: it still applies only when Speed Mode is OFF.
+The widget was added at the end, so workflows saved with v0.8.0 load unchanged.
