@@ -1,11 +1,12 @@
 # ComfyUI Workflows
 
-Workflows I use and may want to share. Every workflow here has had its input/output media stripped (no pictures, videos, audio or output previews) — load your own files into the loader nodes after opening.
+Workflows I use and may want to share. The workflows have had their input/output media stripped (no pictures, videos, audio or output previews) — load your own files into the loader nodes after opening. The only pictures in the repo are the example images in the HunyuanImage README.
 
 | Workflow | What it is |
 |---|---|
-| [`Juice_Frankenstein_V7.6.json`](Juice_Frankenstein_V7.6.json) | MiniMax H3 reference-to-video workflow with refine passes (Motion Refine, Latent Upscale 1.25x, Face Refine), dialogue/voice-cloning mode and seamless continuation. Based on the original workflow by [roycho87](https://github.com/roycho87), heavily modified. |
-| [`dlss5_video_upscale.json`](dlss5_video_upscale.json) | Video upscale: RTX deblur + RIFE interpolation -> DLSS5 -> RTX HDR. |
+| [`HunyuanImage/`](HunyuanImage) | HunyuanImage 3.0 all-in-one workflow: text to image, image editing, multi-image fusion and prompt rewriting from one control panel. Has its own README with models and usage. |
+| [`Minimax/Juice_Frankenstein_V7.6.json`](Minimax/Juice_Frankenstein_V7.6.json) | MiniMax H3 reference-to-video workflow with refine passes (Motion Refine, Latent Upscale 1.25x, Face Refine), dialogue/voice-cloning mode and seamless continuation. Based on the original workflow by [roycho87](https://github.com/roycho87), heavily modified. |
+| [`Upscale/dlss5_video_upscale.json`](Upscale/dlss5_video_upscale.json) | Video upscale: RTX deblur + RIFE interpolation -> DLSS5 -> RTX HDR. |
 
 ## Setup
 1. Copy the folders from [`custom_nodes/`](custom_nodes) into your `ComfyUI/custom_nodes/` folder (these have no public home, so they are bundled here — see below), then restart ComfyUI.

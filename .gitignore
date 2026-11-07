@@ -16,3 +16,6 @@ Backups/
 *.safetensors
 *.ckpt
 *.gguf
+
+# Example images shipped with the HunyuanImage README
+!HunyuanImage/images/*
