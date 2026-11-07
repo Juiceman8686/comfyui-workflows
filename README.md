@@ -4,7 +4,7 @@ Workflows I use and may want to share. Every workflow here has had its input/out
 
 | Workflow | What it is |
 |---|---|
-| [`Juice_Frankenstein_V7.6.json`](Juice_Frankenstein_V7.6.json) | MiniMax H3 reference-to-video workflow with refine passes (Motion Refine, Latent Upscale 1.25x, Face Refine), dialogue/voice-cloning mode and seamless continuation. Based on the community "foxydits" workflow, heavily modified. |
+| [`Juice_Frankenstein_V7.6.json`](Juice_Frankenstein_V7.6.json) | MiniMax H3 reference-to-video workflow with refine passes (Motion Refine, Latent Upscale 1.25x, Face Refine), dialogue/voice-cloning mode and seamless continuation. Based on the original workflow by [roycho87](https://github.com/roycho87), heavily modified. |
 | [`dlss5_video_upscale.json`](dlss5_video_upscale.json) | Video upscale: RTX deblur + RIFE interpolation -> DLSS5 -> RTX HDR. |
 
 ## Setup
